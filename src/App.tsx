@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+import Form from "./Components/Form";
+import ProfileCard from "./Components/ProfileCard";
+import { Stack } from "@mui/material";
+
+interface UserData {
+  profilePic: File | null;
+  username: string;
+  name: string;
+  email: string;
+  mobileNo: string;
+  occupation: string;
+  address: string;
+  gender: string;
+}
 
 function App() {
+  const [userData, setUserData] = useState<UserData>();
+
+  const onSaveUserDataHandler = (enteredUserData: {
+    profilePic: File | null;
+    username: string;
+    name: string;
+    email: string;
+    mobileNo: string;
+    occupation: string;
+    address: string;
+    gender: string;
+  }) => {
+    setUserData(enteredUserData);
+    console.log(enteredUserData);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Stack direction="row" spacing={4} justifyContent="center">
+        <Form onSaveUserData={onSaveUserDataHandler} />
+        {userData && <ProfileCard userData={userData} />}
+      </Stack>
     </div>
   );
 }
