@@ -3,7 +3,8 @@ import "./App.css";
 
 import Form from "./Components/Form";
 import ProfileCard from "./Components/ProfileCard";
-import { Stack } from "@mui/material";
+import { Stack, Button } from "@mui/material";
+import axios from "axios";
 
 interface UserData {
   profilePic: File | null;
@@ -29,8 +30,32 @@ function App() {
     address: string;
     gender: string;
   }) => {
-    setUserData(enteredUserData);
-    console.log(enteredUserData);
+    // setUserData(enteredUserData);
+    // console.log(enteredUserData);
+    axios
+      .post("http://localhost:8000/Profile", {
+        id: Math.random(),
+        username: enteredUserData.username,
+        name: enteredUserData.name,
+        email: enteredUserData.email,
+        mobileNo: enteredUserData.mobileNo,
+        occupation: enteredUserData.occupation,
+        address: enteredUserData.address,
+        gender: enteredUserData.gender,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const refreshHandler = () => {
+    axios.get("http://localhost:8000/Profile").then((res) => {
+      setUserData(res.data);
+      console.log(res.data);
+    });
   };
 
   return (
@@ -39,6 +64,8 @@ function App() {
         <Form onSaveUserData={onSaveUserDataHandler} />
         {userData && <ProfileCard userData={userData} />}
       </Stack>
+
+      <Button onClick={refreshHandler}>Refresh</Button>
     </div>
   );
 }

@@ -11,6 +11,11 @@ import {
   RadioGroup,
   Stack,
   TextField,
+  Dialog,
+  DialogTitle,
+  DialogContentText,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 
 const Form = (props: any) => {
@@ -22,6 +27,7 @@ const Form = (props: any) => {
   const [enteredOccupation, setEnteredOccupation] = useState("");
   const [enteredAddress, setEnteredAddress] = useState("");
   const [enteredGender, setEnteredGender] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const fileUploadHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -84,6 +90,7 @@ const Form = (props: any) => {
     setEnteredOccupation("");
     setEnteredAddress("");
     setEnteredGender("");
+    setDialogOpen(false);
   };
 
   const cancelHandler = () => {
@@ -97,6 +104,14 @@ const Form = (props: any) => {
     setEnteredGender("");
   };
 
+  const dialogOpenHandler = () => {
+    setDialogOpen(true);
+  };
+
+  const dialogCloseHandler = () => {
+    setDialogOpen(false);
+  };
+
   const style = {
     mt: 2,
   };
@@ -108,7 +123,7 @@ const Form = (props: any) => {
         justifyContent: "center",
       }}
     >
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} id="myform">
         <Stack justifyContent="center" spacing={3}>
           <InputLabel htmlFor="file" sx={{ ...style }}>
             Upload Profile Picture
@@ -191,10 +206,36 @@ const Form = (props: any) => {
             <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
 
-          <Button sx={{ ...style }} variant="contained" type="submit">
+          <Button
+            sx={{ ...style }}
+            variant="contained"
+            onClick={dialogOpenHandler}
+          >
             Submit
           </Button>
-
+          <Dialog
+            open={dialogOpen}
+            onClose={dialogCloseHandler}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Use Google's location service?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Let Google help apps determine location. This means sending
+                anonymous location data to Google, even when no apps are
+                running.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={dialogCloseHandler}>Disagree</Button>
+              <Button type="submit" form="myform" autoFocus>
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Button sx={{ ...style }} variant="contained" onClick={cancelHandler}>
             Cancel
           </Button>

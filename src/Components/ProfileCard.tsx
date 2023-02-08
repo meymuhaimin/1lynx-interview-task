@@ -3,14 +3,16 @@ import React from "react";
 const ProfileCard = (props: any) => {
   return (
     <div>
-      <h1>Profile Card</h1>
-      <p>Username: {props.userData.username}</p>
-      <p>Name: {props.userData.name}</p>
-      <p>Email: {props.userData.email}</p>
-      <p>Mobile No: {props.userData.mobileNo}</p>
-      <p>Occupation: {props.userData.occupation}</p>
-      <p>Address: {props.userData.address}</p>
-      <p>Gender: {props.userData.gender}</p>
+      {props.userData.map((user: any) => (
+        <div key={user.id}>
+          <h1>{user.username}</h1>
+          <h2>{user.name}</h2>
+          <h3>{user.email}</h3>
+          <h4>{user.mobileNo}</h4>
+          <h5>{user.occupation}</h5>
+          <h6>{user.address}</h6>
+        </div>
+      ))}
     </div>
   );
 };
