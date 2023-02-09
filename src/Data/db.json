@@ -1,24 +1,5 @@
 {
   "Profile": [
-    {
-      "id": 0.5782768550210273,
-      "username": "minmeyz",
-      "name": "Abdul Muhaimin",
-      "email": "meymuhaimin@gmail.com",
-      "mobileNo": "+60199705235",
-      "occupation": "Engineer",
-      "address": "D 1-3 kip seri bentong",
-      "gender": "male"
-    },
-    {
-      "id": 0.7195515744671672,
-      "username": "TestAdmin",
-      "name": "dfg",
-      "email": "srhsdfh@dfghj",
-      "mobileNo": "+60199705235",
-      "occupation": "IT",
-      "address": "D 1-3 kip seri bentong",
-      "gender": "female"
-    }
+
   ]
 }

@@ -60,12 +60,15 @@ function App() {
 
   return (
     <div className="App">
-      <Stack direction="row" spacing={4} justifyContent="center">
-        <Form onSaveUserData={onSaveUserDataHandler} />
-        {userData && <ProfileCard userData={userData} />}
-      </Stack>
-
-      <Button onClick={refreshHandler}>Refresh</Button>
+      <Form onSaveUserData={onSaveUserDataHandler} />
+      <Button
+        variant="contained"
+        onClick={refreshHandler}
+        sx={{ width: 200, height: 50 }}
+      >
+        Refresh
+      </Button>
+      {userData && <ProfileCard userData={userData} />}
     </div>
   );
 }

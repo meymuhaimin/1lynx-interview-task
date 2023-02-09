@@ -1,19 +1,35 @@
 import React from "react";
+import { Paper, Table, TableCell, TableHead, TableRow } from "@mui/material";
 
 const ProfileCard = (props: any) => {
   return (
-    <div>
-      {props.userData.map((user: any) => (
-        <div key={user.id}>
-          <h1>{user.username}</h1>
-          <h2>{user.name}</h2>
-          <h3>{user.email}</h3>
-          <h4>{user.mobileNo}</h4>
-          <h5>{user.occupation}</h5>
-          <h6>{user.address}</h6>
-        </div>
-      ))}
-    </div>
+    <Paper elevation={3} sx={{ mt: 5 }}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Username</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Mobile No</TableCell>
+            <TableCell>Occupation</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell>Gender</TableCell>
+          </TableRow>
+        </TableHead>
+
+        {props.userData.map((user: any) => (
+          <TableRow>
+            <TableCell>{user.username}</TableCell>
+            <TableCell>{user.name}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.mobileNo}</TableCell>
+            <TableCell>{user.occupation}</TableCell>
+            <TableCell>{user.address}</TableCell>
+            <TableCell>{user.gender}</TableCell>
+          </TableRow>
+        ))}
+      </Table>
+    </Paper>
   );
 };
 

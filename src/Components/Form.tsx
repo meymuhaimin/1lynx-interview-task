@@ -9,13 +9,14 @@ import {
   MenuItem,
   Radio,
   RadioGroup,
-  Stack,
   TextField,
   Dialog,
   DialogTitle,
   DialogContentText,
   DialogContent,
   DialogActions,
+  Grid,
+  Paper,
 } from "@mui/material";
 
 const Form = (props: any) => {
@@ -113,7 +114,8 @@ const Form = (props: any) => {
   };
 
   const style = {
-    mt: 2,
+    display: "flex",
+    margin: 1,
   };
 
   return (
@@ -121,125 +123,140 @@ const Form = (props: any) => {
       sx={{
         display: "flex",
         justifyContent: "center",
+        margin: "1",
+        minWidth: "500px",
+        minHeight: "200px",
       }}
     >
       <form onSubmit={submitHandler} id="myform">
-        <Stack justifyContent="center" spacing={3}>
-          <InputLabel htmlFor="file" sx={{ ...style }}>
-            Upload Profile Picture
-          </InputLabel>
-          <Input
-            type="file"
-            id="file"
-            sx={{ ...style }}
-            onChange={fileUploadHandler}
-          />
-          <TextField
-            sx={{ ...style }}
-            id="username"
-            label="Username"
-            variant="outlined"
-            value={enteredUsername}
-            onChange={usernameChangeHandler}
-          />
-          <TextField
-            sx={{ ...style }}
-            id="name"
-            label="Name"
-            variant="outlined"
-            value={enteredName}
-            onChange={nameChangeHandler}
-          />
-          <TextField
-            sx={{ ...style }}
-            id="email"
-            label="Email"
-            variant="outlined"
-            value={enteredEmail}
-            type="email"
-            onChange={emailChangeHandler}
-          />
-          <TextField
-            sx={{ ...style }}
-            id="mobileNo"
-            label="Mobile No"
-            variant="outlined"
-            value={enteredMobileNo}
-            onChange={mobileNoChangeHandler}
-          />
-          <TextField
-            sx={{ ...style }}
-            select
-            id="occupation"
-            label="Occupation"
-            value={enteredOccupation}
-            defaultValue=""
-            onChange={occupationChangeHandler}
-          >
-            <MenuItem value="IT">IT</MenuItem>
-            <MenuItem value="Engineer">Engineer</MenuItem>
-            <MenuItem value="Accountant">Accountant</MenuItem>
-          </TextField>
-          <TextField
-            sx={{ ...style }}
-            id="address"
-            label="Address"
-            variant="outlined"
-            value={enteredAddress}
-            onChange={addressChangeHandler}
-          />
-          <FormLabel sx={{ ...style }} id="gender">
-            Gender
-          </FormLabel>
-          <RadioGroup
-            aria-labelledby="gender"
-            value={enteredGender}
-            defaultValue="female"
-            name="gender"
-            onChange={genderChangeHandler}
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
+        <Paper
+          elevation={3}
+          sx={{
+            mt: 5,
+          }}
+        >
+          <Grid container>
+            <InputLabel htmlFor="file" sx={{ ...style }} variant="outlined">
+              Upload Profile Picture
+            </InputLabel>
+            <Input
+              type="file"
+              id="file"
+              sx={{ ...style }}
+              onChange={fileUploadHandler}
             />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-          </RadioGroup>
 
-          <Button
-            sx={{ ...style }}
-            variant="contained"
-            onClick={dialogOpenHandler}
-          >
-            Submit
-          </Button>
-          <Dialog
-            open={dialogOpen}
-            onClose={dialogCloseHandler}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"Use Google's location service?"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending
-                anonymous location data to Google, even when no apps are
-                running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={dialogCloseHandler}>Disagree</Button>
-              <Button type="submit" form="myform" autoFocus>
-                Agree
-              </Button>
-            </DialogActions>
-          </Dialog>
-          <Button sx={{ ...style }} variant="contained" onClick={cancelHandler}>
-            Cancel
-          </Button>
-        </Stack>
+            <TextField
+              sx={{ ...style }}
+              id="username"
+              label="Username"
+              variant="outlined"
+              value={enteredUsername}
+              onChange={usernameChangeHandler}
+            />
+            <TextField
+              sx={{ ...style }}
+              id="name"
+              label="Name"
+              variant="outlined"
+              value={enteredName}
+              onChange={nameChangeHandler}
+            />
+
+            <TextField
+              sx={{ ...style }}
+              id="email"
+              label="Email"
+              variant="outlined"
+              value={enteredEmail}
+              type="email"
+              onChange={emailChangeHandler}
+            />
+            <TextField
+              sx={{ ...style }}
+              id="mobileNo"
+              label="Mobile No"
+              variant="outlined"
+              value={enteredMobileNo}
+              onChange={mobileNoChangeHandler}
+            />
+
+            <TextField
+              sx={{ width: 200, mt: 1 }}
+              select
+              id="occupation"
+              label="Occupation"
+              value={enteredOccupation}
+              defaultValue=""
+              onChange={occupationChangeHandler}
+            >
+              <MenuItem value="IT">IT</MenuItem>
+              <MenuItem value="Engineer">Engineer</MenuItem>
+              <MenuItem value="Accountant">Accountant</MenuItem>
+            </TextField>
+
+            <TextField
+              sx={{ ...style }}
+              id="address"
+              label="Address"
+              variant="outlined"
+              value={enteredAddress}
+              onChange={addressChangeHandler}
+            />
+
+            <FormLabel sx={{ ...style }} id="gender">
+              Gender
+            </FormLabel>
+            <RadioGroup
+              aria-labelledby="gender"
+              value={enteredGender}
+              defaultValue="female"
+              name="gender"
+              onChange={genderChangeHandler}
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Female"
+              />
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+            </RadioGroup>
+
+            <Button
+              sx={{ ...style }}
+              variant="contained"
+              onClick={dialogOpenHandler}
+            >
+              Submit
+            </Button>
+            <Dialog
+              open={dialogOpen}
+              onClose={dialogCloseHandler}
+              aria-labelledby="confirm"
+              aria-describedby="confirm"
+            >
+              <DialogTitle id="confirm">{"Attention"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to submit?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={dialogCloseHandler}>Cancel</Button>
+                <Button type="submit" form="myform" autoFocus>
+                  Confirm
+                </Button>
+              </DialogActions>
+            </Dialog>
+            <Button
+              sx={{ ...style }}
+              variant="contained"
+              onClick={cancelHandler}
+            >
+              Cancel
+            </Button>
+          </Grid>
+        </Paper>
       </form>
     </Box>
   );
