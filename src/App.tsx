@@ -49,6 +49,11 @@ function App() {
       .catch(function (error) {
         console.log(error);
       });
+
+    axios.get("http://localhost:8000/Profile").then((res) => {
+      setUserData(res.data);
+      console.log(res.data);
+    });
   };
 
   const refreshHandler = () => {
